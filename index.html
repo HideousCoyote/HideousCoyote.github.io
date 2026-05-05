@@ -1,27 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
+  <!-- ░░ NOISE OVERLAY ░░ -->
+  <div class="noise"></div>
 
-    <main>
-        <p>This is where your main content goes.</p>
-    </main>
+  <!-- ░░ NAVIGATION ░░ -->
+  <nav id="navbar">
+    <span class="nav-logo">YN</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <footer>
-        <p>&copy; 2024 My Website</p>
-    </footer>
+  <!-- ░░ HERO ░░ -->
+  <header id="hero">
+    <div class="hero-label reveal">AVAILABLE FOR OPPORTUNITIES</div>
+    <h1 class="hero-name reveal">
+      <span class="line">Your</span>
+      <span class="line italic">Full</span>
+      <span class="line">Name.</span>
+    </h1>
+    <div class="hero-meta reveal">
+      <p class="hero-role">Product Designer &amp; Developer</p>
+      <p class="hero-location">📍 Atlanta, GA</p>
+    </div>
+    <a href="#about" class="scroll-hint reveal" aria-label="Scroll down">
+      <span class="scroll-text">Scroll</span>
+      <span class="scroll-arrow">↓</span>
+    </a>
+    <div class="hero-accent-block"></div>
+  </header>
 
-    <!-- Link to your JavaScript file -->
-    <script src="script.js"></script>
+  <!-- ░░ ABOUT ░░ -->
+  <section id="about">
+    <div class="section-tag reveal">01 — About</div>
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <div class="portrait-placeholder">
+          <span>Your<br/>Photo</span>
+        </div>
+        <div class="portrait-skills">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">UI/UX</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2 class="section-heading reveal">Making ideas <em>real.</em></h2>
+        <p class="about-body reveal">
+          Hi, I'm <strong>Your Name</strong> — a passionate designer and developer based in Atlanta. I bridge the gap between clean code and thoughtful design to build products that people actually enjoy using.
+        </p>
+        <p class="about-body reveal">
+          With X years of experience across startups and enterprise environments, I thrive on solving hard problems and shipping work I'm proud of.
+        </p>
+        <div class="about-stats reveal">
+          <div class="stat"><span class="stat-num">X+</span><span class="stat-label">Years Experience</span></div>
+          <div class="stat"><span class="stat-num">XX</span><span class="stat-label">Projects Shipped</span></div>
+          <div class="stat"><span class="stat-num">X</span><span class="stat-label">Industries</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ WORK EXPERIENCE ░░ -->
+  <section id="work">
+    <div class="section-tag reveal">02 — Work</div>
+    <h2 class="section-heading reveal">Where I've <em>worked.</em></h2>
+    <div class="timeline" id="work-timeline">
+
+      <div class="timeline-item reveal" data-index="0">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Senior Product Designer</h3>
+              <p class="timeline-company">Company Name</p>
+            </div>
+            <span class="timeline-date">2022 — Present</span>
+          </div>
+          <p class="timeline-desc">
+            Led end-to-end product design for the core platform, collaborating with cross-functional teams to deliver features used by 100k+ users. Drove a redesign that improved key engagement metrics by 40%.
+          </p>
+          <div class="timeline-tags">
+            <span>Figma</span><span>React</span><span>Design Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" data-index="1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Frontend Developer</h3>
+              <p class="timeline-company">Previous Company</p>
+            </div>
+            <span class="timeline-date">2020 — 2022</span>
+          </div>
+          <p class="timeline-desc">
+            Built and maintained React component libraries and contributed to architecture decisions for a high-traffic SaaS application. Mentored two junior developers.
+          </p>
+          <div class="timeline-tags">
+            <span>React</span><span>TypeScript</span><span>CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal" data-index="2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">UX / UI Intern</h3>
+              <p class="timeline-company">Startup Name</p>
+            </div>
+            <span class="timeline-date">2019 — 2020</span>
+          </div>
+          <p class="timeline-desc">
+            Designed user flows and wireframes for a mobile app from zero to launch. Conducted user research and usability testing sessions.
+          </p>
+          <div class="timeline-tags">
+            <span>Figma</span><span>User Research</span><span>Prototyping</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ EDUCATION ░░ -->
+  <section id="education">
+    <div class="section-tag reveal">03 — Education</div>
+    <h2 class="section-heading reveal">Where I <em>learned.</em></h2>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <h3 class="edu-degree">B.S. Computer Science</h3>
+          <p class="edu-school">University Name</p>
+          <p class="edu-date">Graduated 20XX</p>
+          <p class="edu-detail">Relevant coursework: Data Structures, HCI, Web Development, Machine Learning</p>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-icon">📜</div>
+        <div class="edu-body">
+          <h3 class="edu-degree">Google UX Design Certificate</h3>
+          <p class="edu-school">Google / Coursera</p>
+          <p class="edu-date">Completed 20XX</p>
+          <p class="edu-detail">End-to-end UX process: empathize, define, ideate, prototype, and test.</p>
+        </div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-icon">🏅</div>
+        <div class="edu-body">
+          <h3 class="edu-degree">AWS Cloud Practitioner</h3>
+          <p class="edu-school">Amazon Web Services</p>
+          <p class="edu-date">Certified 20XX</p>
+          <p class="edu-detail">Foundational cloud concepts, core services, security, and architecture best practices.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ CONTACT ░░ -->
+  <section id="contact">
+    <div class="section-tag reveal">04 — Contact</div>
+    <h2 class="contact-heading reveal">Let's <em>talk.</em></h2>
+    <p class="contact-sub reveal">Open to full-time roles, contract work, and interesting conversations.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:your@email.com" class="contact-btn primary">✉ Email Me</a>
+      <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener" class="contact-btn secondary">in LinkedIn</a>
+      <a href="https://github.com/yourhandle" target="_blank" rel="noopener" class="contact-btn secondary">⌥ GitHub</a>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer>
+    <p>© <span id="year"></span> Your Name. Built with care.</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
