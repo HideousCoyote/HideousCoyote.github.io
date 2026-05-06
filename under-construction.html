@@ -190,7 +190,7 @@
   <div class="bg-grid" aria-hidden="true"></div>
 
   <main class="page-bg" id="page-bg" aria-hidden="true">
-    <div class="bg-logo">YN</div>
+    <div class="bg-logo">MC</div>
     <div class="bg-headlines">
       <div class="bg-line">Work</div>
       <div class="bg-line accent">Experience</div>
@@ -198,8 +198,7 @@
       <div class="bg-line muted">About Me</div>
     </div>
     <div class="bg-tags">
-      <span>React</span><span>UI/UX</span><span>Node.js</span>
-      <span>Python</span><span>Figma</span><span>SQL</span>
+      
     </div>
   </main>
 
@@ -278,8 +277,8 @@
         overlay.classList.add('dismissed');
         if (pageBg) pageBg.classList.add('peek');
         overlay.addEventListener('animationend', () => {
-          overlay.style.display = 'none';
-          pageBg.removeAttribute('aria-hidden');
+          sessionStorage.setItem('dismissed_construction', 'true');
+          window.location.href = 'index.html';
         }, { once: true });
       }
 
