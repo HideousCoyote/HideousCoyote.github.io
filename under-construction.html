@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & VARS ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0d0d0d;
+      --bg-card:    #1a1a1a;
+      --accent:     #f5a623;
+      --accent-2:   #e8472a;
+      --text:       #f0ece4;
+      --text-muted: #666660;
+      --border:     #252525;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'DM Serif Display', serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: var(--font-body);
+      color: var(--text);
+    }
+
+    /* ── NOISE ── */
+    .noise {
+      pointer-events: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+    }
+
+    /* ── ANIMATED GRID ── */
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.4;
+      animation: gridDrift 20s linear infinite;
+    }
+    @keyframes gridDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 60px 60px; }
+    }
+
+    /* ── BLURRED PREVIEW ── */
+    .page-bg {
+      position: fixed; inset: 0; z-index: 1;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 8%; gap: 2rem;
+      filter: blur(6px) brightness(0.35);
+      pointer-events: none; user-select: none;
+      transition: filter 0.8s ease;
+    }
+    .page-bg.peek { filter: blur(2px) brightness(0.6); }
+
+    .bg-logo { font-family: var(--font-display); font-size: 5rem; color: var(--accent); letter-spacing: 4px; }
+    .bg-headlines { display: flex; flex-direction: column; gap: 0.3rem; }
+    .bg-line { font-family: var(--font-display); font-size: clamp(3rem, 8vw, 7rem); line-height: 0.9; color: var(--text); }
+    .bg-line.accent { color: var(--accent); }
+    .bg-line.muted  { color: var(--text-muted); }
+    .bg-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .bg-tags span { padding: 6px 14px; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; border-radius: 2px; }
+
+    /* ── OVERLAY ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(2px);
+      animation: overlayIn 0.4s ease forwards;
+    }
+    @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-overlay.dismissed { animation: overlayOut 0.5s ease forwards; pointer-events: none; }
+    @keyframes overlayOut   { from { opacity: 1; } to { opacity: 0; } }
+
+    /* ── MODAL CARD ── */
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid #333;
+      border-radius: 6px;
+      width: 100%; max-width: 540px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.7), 0 0 60px rgba(245,166,35,0.06);
+      animation: modalIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.15s;
+      opacity: 0; transform: translateY(24px) scale(0.97);
+    }
+    @keyframes modalIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+    .modal.dismissed   { animation: modalOut 0.4s ease forwards; }
+    @keyframes modalOut { to { opacity: 0; transform: translateY(-16px) scale(0.96); } }
+
+    /* ── TOP BAR ── */
+    .modal-topbar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 18px; border-bottom: 1px solid var(--border); background: #111;
+    }
+    .modal-dots { display: flex; gap: 6px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red    { background: #e8472a; }
+    .dot.yellow { background: var(--accent); }
+    .dot.green  { background: #3cb76d; }
+    .modal-topbar-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-left: auto; }
+
+    /* ── CAUTION STRIPE ── */
+    .modal-stripe {
+      background: repeating-linear-gradient(-45deg, var(--accent) 0, var(--accent) 16px, #1a1200 16px, #1a1200 32px);
+      padding: 10px 0; display: flex; gap: 2rem; overflow: hidden; white-space: nowrap;
+    }
+    .modal-stripe span {
+      font-family: var(--font-display); font-size: 0.78rem;
+      letter-spacing: 0.15em; color: #1a1200; flex-shrink: 0;
+      animation: marquee 10s linear infinite;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+
+    /* ── BODY ── */
+    .modal-body { padding: 2.2rem 2.2rem 1.8rem; }
+
+    .modal-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; animation: wobble 3s ease-in-out infinite; }
+    @keyframes wobble { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+    .modal-title { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.1; color: var(--text); margin-bottom: 1rem; }
+    .modal-title em { font-style: italic; color: var(--accent); }
+
+    .modal-message { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 1.8rem; }
+
+    .modal-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+
+    /* ── META ── */
+    .modal-meta { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.8rem; }
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .meta-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); }
+    .meta-value { font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 6px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #3cb76d; box-shadow: 0 0 6px #3cb76d; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
+    .meta-link { color: var(--accent); text-decoration: none; font-size: 0.82rem; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .meta-link:hover { border-color: var(--accent); }
+
+    /* ── DISMISS BUTTON ── */
+    .modal-dismiss {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); font-family: var(--font-body);
+      font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 11px 20px; border-radius: 2px; cursor: pointer; width: 100%;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .modal-dismiss:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .btn-arrow { transition: transform 0.2s; }
+    .modal-dismiss:hover .btn-arrow { transform: translateX(4px); }
+
+    /* ── PROGRESS ── */
+    .modal-progress { padding: 1.2rem 2.2rem 1.6rem; border-top: 1px solid var(--border); }
+    .progress-label { display: flex; justify-content: space-between; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+    .progress-pct { color: var(--accent); }
+    .progress-track { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .progress-fill {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s;
+    }
+
+    @media (max-width: 480px) {
+      .modal-body { padding: 1.6rem; }
+      .modal-meta { grid-template-columns: 1fr 1fr; }
+      .modal-progress { padding: 1rem 1.6rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="noise"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <main class="page-bg" id="page-bg" aria-hidden="true">
+    <div class="bg-logo">YN</div>
+    <div class="bg-headlines">
+      <div class="bg-line">Work</div>
+      <div class="bg-line accent">Experience</div>
+      <div class="bg-line">Education</div>
+      <div class="bg-line muted">About Me</div>
+    </div>
+    <div class="bg-tags">
+      <span>React</span><span>UI/UX</span><span>Node.js</span>
+      <span>Python</span><span>Figma</span><span>SQL</span>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal" id="modal">
+
+      <div class="modal-topbar">
+        <div class="modal-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <span class="modal-topbar-label">status.notice</span>
+      </div>
+
+      <div class="modal-stripe" aria-hidden="true">
+        <span>UNDER CONSTRUCTION</span><span>UNDER CONSTRUCTION</span>
+        <span>UNDER CONSTRUCTION</span><span>UNDER CONSTRUCTION</span>
+        <span>UNDER CONSTRUCTION</span>
+      </div>
+
+      <div class="modal-body">
+        <span class="modal-icon">🚧</span>
+        <h1 class="modal-title" id="modal-title">Pardon <em>the mess.</em></h1>
+        <p class="modal-message">
+          My portfolio is currently being built — I'm putting the finishing touches on something worth seeing.
+          Check back soon, and thanks for your patience!
+        </p>
+        <div class="modal-divider"></div>
+        <div class="modal-meta">
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-value"><span class="status-dot"></span> Actively building</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Est. launch</span>
+            <span class="meta-value">Coming soon</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Contact</span>
+            <span class="meta-value">
+              <a href="mailto:your@email.com" class="meta-link">your@email.com</a>
+            </span>
+          </div>
+        </div>
+        <button class="modal-dismiss" id="modal-dismiss">
+          Take a peek anyway <span class="btn-arrow">→</span>
+        </button>
+      </div>
+
+      <div class="modal-progress">
+        <div class="progress-label">
+          <span>Progress</span>
+          <span class="progress-pct">68%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('modal-overlay');
+      const modal   = document.getElementById('modal');
+      const dismiss = document.getElementById('modal-dismiss');
+      const pageBg  = document.getElementById('page-bg');
+      const fill    = document.getElementById('progress-fill');
+
+      setTimeout(() => { if (fill) fill.style.width = '68%'; }, 300);
+
+      function dismissModal() {
+        modal.classList.add('dismissed');
+        overlay.classList.add('dismissed');
+        if (pageBg) pageBg.classList.add('peek');
+        overlay.addEventListener('animationend', () => {
+          overlay.style.display = 'none';
+          pageBg.removeAttribute('aria-hidden');
+        }, { once: true });
+      }
+
+      dismiss.addEventListener('click', dismissModal);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) dismissModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismissModal(); });
+
+      // Focus trap
+      const focusable = Array.from(modal.querySelectorAll('a[href], button'));
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab' || overlay.style.display === 'none') return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      });
+
+      setTimeout(() => { dismiss.focus(); }, 700);
+    });
+  </script>
+
+</body>
+</html>
