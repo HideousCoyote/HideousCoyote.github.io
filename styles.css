@@ -10,10 +10,10 @@
   --bg:          #0d0d0d;
   --bg-2:        #141414;
   --bg-card:     #1a1a1a;
-  --accent:      #f5a623;
-  --accent-2:    #e8472a;
+  --accent:      #1e90ff;
+  --accent-2:    #005cb3;
   --text:        #f0ece4;
-  --text-muted:  #888880;
+  --text-muted:  #a0a0a0;
   --border:      #2a2a2a;
 
   --font-display: 'Bebas Neue', sans-serif;
@@ -110,7 +110,7 @@ body {
   transition: background 0.2s, transform 0.2s;
 }
 .nav-links a.nav-cta:hover {
-  background: #ffc45a;
+  background: #1874CD;
   transform: translateY(-1px);
 }
 
@@ -421,8 +421,8 @@ section {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-muted);
-  background: rgba(245,166,35,0.08);
-  border: 1px solid rgba(245,166,35,0.2);
+  background: rgba(30,144,255,0.08);
+  border: 1px solid rgba(30,144,255,0.2);
   padding: 3px 10px;
   border-radius: 2px;
 }
@@ -534,7 +534,7 @@ section {
   color: #0d0d0d;
 }
 .contact-btn.primary:hover {
-  background: #ffc45a;
+  background: #007df6;
   transform: translateY(-2px);
 }
 .contact-btn.secondary {
