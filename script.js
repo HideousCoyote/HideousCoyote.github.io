@@ -124,3 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+
+// adds collapse to timeline on work history
+document.querySelectorAll('.timeline-header').forEach(header => {
+  header.addEventListener('click', () => {
+    header.closest('.timeline-content').classList.toggle('expanded');
+  });
+});

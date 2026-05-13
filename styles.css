@@ -377,12 +377,11 @@ section {
 }
 
 .timeline-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem auto;
+  align-items: start;
   gap: 1rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
 }
 
 .timeline-role {
@@ -404,6 +403,7 @@ section {
   letter-spacing: 0.05em;
   white-space: nowrap;
   padding-top: 4px;
+  text-align: right;
 }
 .timeline-desc {
   color: var(--text-muted);
@@ -425,6 +425,45 @@ section {
   border: 1px solid rgba(30,144,255,0.2);
   padding: 3px 10px;
   border-radius: 2px;
+}
+/* Collapse behavior */
+.timeline-header {
+  cursor: pointer;
+  margin-bottom: 0; /* remove gap when collapsed */
+}
+
+.timeline-desc,
+.timeline-tags {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+.timeline-content.expanded .timeline-desc {
+  max-height: 200px;
+  opacity: 1;
+  margin-bottom: 1.2rem;
+  margin-top: 1rem;
+}
+
+.timeline-content.expanded .timeline-tags {
+  max-height: 100px;
+  opacity: 1;
+}
+
+/* Optional: rotate a toggle icon */
+.toggle-icon {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+  padding-top: 6px;
+  flex-shrink: 0;
+  justify-self: end;
+}
+.timeline-content.expanded .toggle-icon {
+  transform: rotate(180deg);
 }
 
 /* ── EDUCATION ── */
@@ -582,5 +621,13 @@ footer {
 
   .timeline { padding-left: 1.5rem; }
   .timeline-dot { left: -1.95rem; }
-  .timeline-header { flex-direction: column; }
+  .timeline-header {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .timeline-date { text-align: left; }
+  .toggle-icon {
+    justify-self: start;
+    padding-top: 0;
+  }
 }
