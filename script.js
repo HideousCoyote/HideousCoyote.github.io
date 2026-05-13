@@ -28,6 +28,25 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── 3. MOBILE HAMBURGER MENU ────────────────────────── */
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.querySelector('.nav-links');
+  let scrollLockY = 0;
+
+  const lockPageScroll = () => {
+    scrollLockY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollLockY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  };
+
+  const unlockPageScroll = () => {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollLockY);
+  };
 
   const setMobileMenuState = (isOpen) => {
     navLinks.classList.toggle('open', isOpen);
@@ -35,6 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.setAttribute('aria-expanded', String(isOpen));
     document.documentElement.classList.toggle('menu-open', isOpen);
     document.body.classList.toggle('menu-open', isOpen);
+    if (isOpen) {
+      lockPageScroll();
+    } else {
+      unlockPageScroll();
+    }
   };
 
   hamburger.addEventListener('click', () => {
@@ -47,6 +71,21 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => {
       setMobileMenuState(false);
     });
+  });
+
+  // Close when tapping outside menu links (overlay area).
+  navLinks.addEventListener('click', (event) => {
+    if (event.target === navLinks) {
+      setMobileMenuState(false);
+    }
+  });
+
+  // Close with Escape key for accessibility.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+      setMobileMenuState(false);
+      hamburger.focus();
+    }
   });
 
   // If viewport switches to desktop while menu is open, reset mobile nav state.
