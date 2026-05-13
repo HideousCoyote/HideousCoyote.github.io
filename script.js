@@ -29,22 +29,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.querySelector('.nav-links');
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
+  const setMobileMenuState = (isOpen) => {
+    navLinks.classList.toggle('open', isOpen);
     hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    // Prevent body scroll when menu open
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    document.documentElement.classList.toggle('menu-open', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+  };
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = !navLinks.classList.contains('open');
+    setMobileMenuState(isOpen);
   });
 
   // Close menu when a link is clicked
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      document.body.style.overflow = '';
+      setMobileMenuState(false);
     });
+  });
+
+  // If viewport switches to desktop while menu is open, reset mobile nav state.
+  const closeMobileMenu = () => {
+    setMobileMenuState(false);
+  };
+
+  const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+  const handleViewportModeChange = (event) => {
+    if (!event.matches) {
+      closeMobileMenu();
+    }
+  };
+
+  if (typeof mobileBreakpoint.addEventListener === 'function') {
+    mobileBreakpoint.addEventListener('change', handleViewportModeChange);
+  } else if (typeof mobileBreakpoint.addListener === 'function') {
+    // Legacy Safari fallback.
+    mobileBreakpoint.addListener(handleViewportModeChange);
+  }
+
+  window.addEventListener('orientationchange', () => {
+    if (!mobileBreakpoint.matches) {
+      closeMobileMenu();
+    }
   });
 
 

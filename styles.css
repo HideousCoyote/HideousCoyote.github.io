@@ -35,6 +35,11 @@ body {
   overflow-x: hidden;
 }
 
+html.menu-open,
+body.menu-open {
+  overflow: hidden;
+}
+
 /* ── NOISE TEXTURE ── */
 .noise {
   pointer-events: none;
@@ -603,15 +608,38 @@ footer {
   .nav-links {
     position: fixed;
     inset: 0;
-    background: var(--bg);
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(13, 13, 13, 0.97);
+    backdrop-filter: blur(6px);
     flex-direction: column;
     justify-content: center;
-    gap: 2.5rem;
+    align-items: center;
+    gap: 1.6rem;
+    padding: calc(20px + env(safe-area-inset-top, 0px)) 10% calc(20px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    overflow: hidden;
     font-size: 1.1rem;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(.77,0,.18,1);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(.77,0,.18,1), visibility 0s linear 0.35s;
   }
-  .nav-links.open { transform: translateX(0); }
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    transition-delay: 0s;
+  }
+  .nav-links.open::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .portrait-placeholder { aspect-ratio: 4/3; }
