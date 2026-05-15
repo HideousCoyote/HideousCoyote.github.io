@@ -276,7 +276,7 @@
         if (pageBg) pageBg.classList.add('peek');
         overlay.addEventListener('animationend', () => {
           sessionStorage.setItem('dismissed_construction', 'true');
-          window.location.href = 'index.html';
+          window.location.href = '/';
         }, { once: true });
       }
 
