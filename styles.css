@@ -121,6 +121,9 @@ body.menu-open {
 .nav-links a:hover {
   color: var(--text);
 }
+.nav-links a:active {
+  color: var(--text);
+}
 
 .nav-links a.nav-cta {
   background: var(--accent);
@@ -133,6 +136,11 @@ body.menu-open {
     transform 0.2s;
 }
 .nav-links a.nav-cta:hover {
+  background: #1e90ff;
+  transform: translateY(-1px);
+  box-shadow: 0px 0px 12px 2px #1e90ff;
+}
+.nav-links a.nav-cta:active {
   background: #1e90ff;
   transform: translateY(-1px);
   box-shadow: 0px 0px 12px 2px #1e90ff;
@@ -241,6 +249,9 @@ body.menu-open {
   animation: bounce 2.5s infinite;
 }
 .scroll-hint:hover {
+  color: var(--accent);
+}
+.scroll-hint:active {
   color: var(--accent);
 }
 .scroll-arrow {
@@ -354,10 +365,6 @@ section {
     border-color 0.2s,
     color 0.2s;
 }
-.skill-tag:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
 
 .about-body {
   color: var(--text-muted);
@@ -450,6 +457,11 @@ section {
     transform 0.3s;
 }
 .timeline-content:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+  box-shadow: 0px 0px 12px 2px #1e90ff;
+}
+.timeline-content:active {
   border-color: var(--accent);
   transform: translateX(4px);
   box-shadow: 0px 0px 12px 2px #1e90ff;
@@ -576,6 +588,11 @@ section {
   transform: translateY(-4px);
   box-shadow: 0px 0px 12px 2px #1e90ff;
 }
+.edu-card:active {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0px 0px 12px 2px #1e90ff;
+}
 
 .edu-icon {
   font-size: 1.8rem;
@@ -666,12 +683,22 @@ section {
   background: #007df6;
   transform: translateY(-2px);
 }
+.contact-btn.primary:active {
+  background: #007df6;
+  transform: translateY(-2px);
+}
 .contact-btn.secondary {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
 }
 .contact-btn.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0px 0px 12px 2px #1e90ff;
+}
+.contact-btn.secondary:active {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-2px);
