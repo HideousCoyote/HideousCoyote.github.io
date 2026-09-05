@@ -1,272 +1,330 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head> 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mark Chambers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark Chambers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- NOISE OVERLAY -->
+    <div class="noise"></div>
 
-  <!-- NOISE OVERLAY -->
-  <div class="noise"></div>
+    <!-- NAVIGATION  -->
+    <nav id="navbar">
+      <span class="nav-logo">MC</span>
+      <ul class="nav-links">
+        <li>
+          <a href="#about">About</a>
+        </li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#education">Education</a></li>
+        <li>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-  <!-- NAVIGATION  -->
-  <nav id="navbar">
-    <span class="nav-logo">MC</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact" class="nav-cta">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- HERO -->
-  <header id="hero">
-    <div class="hero-label reveal">CURRENTLY EMPLOYED but OPEN TO POSSIBILITIES</div>
-    <h1 class="hero-name reveal">
-      <span class="line">Mark</span>
-      <span class="line italic">A.</span>
-      <span class="line">Chambers.</span>
-    </h1>
-    <div class="hero-meta reveal">
-      <p class="hero-role">Sr. Aviation Training Device Specialist</p>
-      <p class="hero-location">📍 Ft. Worth, Texas/Japan</p>
-    </div>
-    <a href="#about" class="scroll-hint reveal" aria-label="Scroll down">
-      <span class="scroll-text">Scroll</span>
-      <span class="scroll-arrow">↓</span>
-    </a>
-    <div class="hero-accent-block"></div>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-tag reveal">01 — About</div>
-    <div class="about-grid">
-      <div class="about-portrait reveal">
-        <div class="portrait-placeholder">
-          <span>Your<br/>Photo</span>
-        </div>
-        <div class="portrait-skills">
-          <span class="skill-tag">C++</span>
-          <span class="skill-tag">Linux</span>
-          <span class="skill-tag"></span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag"></span>
-          <span class="skill-tag">SQL</span>
-        </div>
+    <!-- HERO -->
+    <header id="hero">
+      <div class="hero-label reveal">
+        CURRENTLY EMPLOYED but OPEN TO POSSIBILITIES
       </div>
-      <div class="about-text">
-        <h2 class="section-heading reveal">Making ideas <em>real.</em></h2>
-        <p class="about-body reveal">
-          Hi, I'm <strong>Mark Chambers</strong> -currently working in Simulation as a Training Device Specialist. 
+      <h1 class="hero-name reveal">
+        <span class="line">Mark</span>
+        <span class="line italic">A.</span>
+        <span class="line">Chambers.</span>
+      </h1>
+      <div class="hero-meta reveal">
+        <p class="hero-role">Sr. Aviation Training Device Specialist</p>
+        <p class="hero-location">
+          <i class="bi bi-geo" style="color: dodgerblue"> </i> Ft. Worth, Texas
+          / Japan
         </p>
-        <p class="about-body reveal">
-          With 10 + years of experience across mulitple platforms, I thrive on solving hard problems and giving the customer a usable product.
-        </p>
-        <div class="about-stats reveal">
-          <div class="stat"><span class="stat-num">10 +</span><span class="stat-label">Years Experience</span></div>
-          <div class="stat"><span class="stat-num">15 +</span><span class="stat-label">Platforms</span></div>
-          <div class="stat"><span class="stat-num">2</span><span class="stat-label">Differant Industries</span></div>
-        </div>
       </div>
-    </div>
-  </section>
+      <a href="#about" class="scroll-hint reveal" aria-label="Scroll down">
+        <span class="scroll-text">Scroll</span>
+        <span class="scroll-arrow">↓</span>
+      </a>
+      <div class="hero-accent-block"></div>
+    </header>
 
-  <!-- WORK EXPERIENCE -->
-  <section id="work">
-    <div class="section-tag reveal">02 — Work</div>
-    <h2 class="section-heading reveal">Where I've <em>worked.</em></h2>
-    <div class="timeline" id="work-timeline">
-
-      <div class="timeline-item reveal" data-index="0">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Senior Aviation Training Device Specialist</h3>
-              <p class="timeline-company">Bell Helicopters</p>
-            </div>
-            <span class="timeline-date">June 2025 — Present</span>
-            <span class="toggle-icon">▾</span>
-          </div>
-          <p class="timeline-desc">
-            Maintains Aviation Training Devices in Support of the U.S. Government &amp; JGSDF(Japanese Ground Self Defense Force).
-          <div class="timeline-tags">
-            <span>Linux</span><span>Flight Simulation</span><span>Customer Service</span>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-tag reveal">01 — About</div>
+      <div class="about-grid">
+        <div class="about-portrait reveal">
+          <div class="portrait-placeholder">
+            <span>Your<br />Photo</span>
           </div>
         </div>
-      </div>
-
-      <div class="timeline-item reveal" data-index="1">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Electronics Tech II</h3>
-              <p class="timeline-company">Valiant Integrated Services</p>
-            </div>
-            <span class="timeline-date">January 2019 — June 2025</span>
-            <span class="toggle-icon">▾</span>
-          </div>
-          <p class="timeline-desc">
-            Maintained various training simulators including M1Abrams, M3 Bradley, Humvee, EST, and Gunnery Trainers for the U.S. Army at Ft. Stewart, GA. 
+        <div class="about-text">
+          <h2 class="section-heading reveal">Making ideas <em>real.</em></h2>
+          <p class="about-body reveal">
+            Hi, I'm <strong>Mark Chambers</strong> -currently working in
+            Simulation as a Training Device Specialist.
           </p>
-          <div class="timeline-tags">
-            <span>Linux</span><span>Software</span><span>Electronics</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal" data-index="2">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Telecommunications Mechanic II</h3>
-              <p class="timeline-company">CSRA</p>
-            </div>
-            <span class="timeline-date">September 2016 — January 2017</span>
-            <span class="toggle-icon">▾</span>
-          </div>
-          <p class="timeline-desc">
-            Managed network and telecommunications infrastructure for the U.S. Army at Ft. Stewart, GA. Monitored mesh networks, fiber opitics, Day/Night cameras, and other various range equipment including targetry and minor robotics. 
+          <p class="about-body reveal">
+            With 10 + years of experience across mulitple platforms, working
+            with ground and aviation simulators.
           </p>
-          <div class="timeline-tags">
-            <span>Linux</span><span>Software</span><span>Electronics</span><span>Networking</span><span>Live Fire Exercises</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal" data-index="3">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Armorer/Builder</h3>
-              <p class="timeline-company">Daniel Defense</p>
+          <div class="about-stats reveal">
+            <div class="stat">
+              <span class="stat-num">10 +</span
+              ><span class="stat-label">Years Experience</span>
             </div>
-            <span class="timeline-date">April 2016 — September 2016</span>
-            <span class="toggle-icon">▾</span>
-          </div>
-          <p class="timeline-desc">
-            As an Armorer/Builder at Daniel Defense, responsible for assembling and maintaining 
-            firearms, ensuring quality control, and supporting manufacturing processes.
-          </p>
-          <div class="timeline-tags">
-            <span>Gunsmithing</span><span>Quality Control</span><span>Manufacturing</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="timeline-item reveal" data-index="4">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">U81 Simulator Technician</h3>
-              <p class="timeline-company">CSRA</p>
+            <div class="stat">
+              <span class="stat-num">15 +</span
+              ><span class="stat-label">Platforms</span>
             </div>
-            <span class="timeline-date">June 2015 — April 2016</span>
-            <span class="toggle-icon">▾</span>
-          </div>
-          <p class="timeline-desc">
-            Maintained LCT (Longbow Crew Trainer) Apache Flight Simulator at Hunter Army Airfield, GA.
-          </p>
-          <div class="timeline-tags">
-            <span>Linux</span><span>Software</span><span>Electronics</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item reveal" data-index="5">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">OH-58D(R) Armament/Electrical Systems Supervisor</h3>
-              <p class="timeline-company">United States Army</p>
+            <div class="stat">
+              <span class="stat-num">2</span
+              ><span class="stat-label">Differant Industries</span>
             </div>
-            <span class="timeline-date">June 2004 — June 2015</span>
-            <span class="toggle-icon">▾</span>
-          </div>
-          <p class="timeline-desc">
-            Supervised the maintenance and operation of OH-58D(R) armament and electrical systems, ensuring mission readiness and safety.
-          </p>
-          <div class="timeline-tags">
-            <span>Leadership</span><span>Maintenance</span><span>Electrical Systems</span>
           </div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- WORK EXPERIENCE -->
+    <section id="work">
+      <div class="section-tag reveal">02 — Work</div>
+      <h2 class="section-heading reveal">Where I've <em>worked.</em></h2>
+      <div class="timeline" id="work-timeline">
+        <div class="timeline-item reveal" data-index="0">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">
+                  Senior Aviation Training Device Specialist
+                </h3>
+                <p class="timeline-company">Bell Helicopters</p>
+              </div>
+              <span class="timeline-date">June 2025 — Present</span>
+              <span class="toggle-icon">▾</span>
+            </div>
+            <p class="timeline-desc">
+              Maintains Aviation Training Devices in Support of the U.S.
+              Government &amp; JGSDF(Japanese Ground Self Defense Force).
+            </p>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="section-tag reveal">03 — Education</div>
-    <h2 class="section-heading reveal">Where I <em>learned.</em></h2>
-    <div class="edu-grid">
+            <div class="timeline-tags">
+              <span>Linux</span><span>Flight Simulation</span
+              ><span>Customer Service</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="edu-card reveal">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-body">
-          <h3 class="edu-degree">B.S. Managment of Information Systems</h3>
-          <p class="edu-school">Columbia College of Missouri</p>
-          <p class="edu-date">Graduated 2020</p>
-          <p class="edu-detail">Relevant coursework: Web Development, Agile Software Development with C#, JAVA</p>
+        <div class="timeline-item reveal" data-index="1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Electronics Tech II</h3>
+                <p class="timeline-company">Valiant Integrated Services</p>
+              </div>
+              <span class="timeline-date">January 2017 — June 2025</span>
+              <span class="toggle-icon">▾</span>
+            </div>
+            <p class="timeline-desc">
+              Maintained various training simulators including M1Abrams, M3
+              Bradley, Humvee, EST, and Gunnery Trainers for the U.S. Army at
+              Ft. Stewart, GA.
+            </p>
+            <div class="timeline-tags">
+              <span>Linux</span><span>Software</span><span>Electronics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-index="2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Telecommunications Mechanic II</h3>
+                <p class="timeline-company">CSRA</p>
+              </div>
+              <span class="timeline-date">September 2016 — January 2017</span>
+              <span class="toggle-icon">▾</span>
+            </div>
+            <p class="timeline-desc">
+              Managed network and telecommunications infrastructure for the U.S.
+              Army at Ft. Stewart, GA. Monitored mesh networks, fiber opitics,
+              Day/Night cameras, and other various range equipment including
+              targetry and minor robotics.
+            </p>
+            <div class="timeline-tags">
+              <span>Linux</span><span>Software</span><span>Electronics</span
+              ><span>Networking</span><span>Live Fire Exercises</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-index="3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">Armorer/Builder</h3>
+                <p class="timeline-company">Daniel Defense</p>
+              </div>
+              <span class="timeline-date">April 2016 — September 2016</span>
+              <span class="toggle-icon">▾</span>
+            </div>
+            <p class="timeline-desc">
+              As an Armorer/Builder at Daniel Defense, responsible for
+              assembling and maintaining firearms, ensuring quality control, and
+              supporting manufacturing processes.
+            </p>
+            <div class="timeline-tags">
+              <span>Gunsmithing</span><span>Quality Control</span
+              ><span>Manufacturing</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-index="4">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">U81 Simulator Technician</h3>
+                <p class="timeline-company">CSRA</p>
+              </div>
+              <span class="timeline-date">June 2015 — April 2016</span>
+              <span class="toggle-icon">▾</span>
+            </div>
+            <p class="timeline-desc">
+              Maintained LCT (Longbow Crew Trainer) Apache Flight Simulator at
+              Hunter Army Airfield, GA.
+            </p>
+            <div class="timeline-tags">
+              <span>Linux</span><span>Software</span><span>Electronics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" data-index="5">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3 class="timeline-role">
+                  OH-58D(R) Armament/Electrical Systems Supervisor
+                </h3>
+                <p class="timeline-company">United States Army</p>
+              </div>
+              <span class="timeline-date">June 2004 — June 2015</span>
+              <span class="toggle-icon">▾</span>
+            </div>
+            <p class="timeline-desc">
+              Supervised the maintenance and operation of OH-58D(R) armament and
+              electrical systems, ensuring mission readiness and safety.
+            </p>
+            <div class="timeline-tags">
+              <span>Leadership</span><span>Maintenance</span
+              ><span>Electrical Systems</span>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="edu-card reveal">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-body">
-          <h3 class="edu-degree">A.S. CyberSecurity-In Progress</h3>
-          <p class="edu-school">Columbia College of Missouri</p>
-          <p class="edu-date">estimated Completion 2026</p>
-          <p class="edu-detail">Revelant coursework: C++, Network Security, CyberSecurity</p>
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-tag reveal">03 — Education</div>
+      <h2 class="section-heading reveal">Where I <em>learned.</em></h2>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-body">
+            <h3 class="edu-degree">B.S. Managment of Information Systems</h3>
+            <p class="edu-school">Columbia College of Missouri</p>
+            <p class="edu-date">Graduated 2020</p>
+            <p class="edu-detail">
+              Relevant coursework: Web Development, Agile Software Development
+              with C#, JAVA
+            </p>
+          </div>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-body">
+            <h3 class="edu-degree">A.S. CyberSecurity</h3>
+            <p class="edu-school">Columbia College of Missouri</p>
+            <p class="edu-date">Graduated 2026</p>
+            <p class="edu-detail">
+              Revelant coursework: C++, Network Security, CyberSecurity
+            </p>
+          </div>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-body">
+            <h3 class="edu-degree">
+              Certificate in Database &amp; Software Development
+            </h3>
+            <p class="edu-school">Columbia College of Missouri</p>
+            <p class="edu-date">2026</p>
+            <p class="edu-detail">
+              Database &amp; Software Development with C# and Agile Principles.
+            </p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="edu-card reveal">
-        <div class="edu-icon">🎓</div>
-        <div class="edu-body">
-          <h3 class="edu-degree">Certificate in Database &amp; Software Development</h3>
-          <p class="edu-school">Columbia College of Missouri</p>
-          <p class="edu-date">2026</p>
-          <p class="edu-detail">Database &amp; Software Development with C# and Agile Principles.</p>
-        </div>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-tag reveal">04 — Contact</div>
+      <h2 class="contact-heading reveal">Let's <em>talk.</em></h2>
+      <p class="contact-sub reveal">
+        Open to full-time roles, contract work, and interesting conversations.
+        Looking to get a start in software development, specifically fullstack
+        or python development.
+      </p>
+      <div class="contact-links reveal">
+        <!-- <a href="mailto:your@email.com" class="contact-btn primary">✉ Email Me</a> -->
+        <a
+          href="https://www.linkedin.com/in/m--chambers/"
+          target="_blank"
+          rel="noopener"
+          class="contact-btn secondary"
+          ><i class="bi bi-linkedin icons"></i
+        ></a>
+        <a
+          href="https://github.com/HideousCoyote"
+          target="_blank"
+          rel="noopener"
+          class="contact-btn secondary"
+          ><i class="bi bi-github icons"></i
+        ></a>
+        <!-- As a functional button -->
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <footer>
+      <p>© <span id="year"></span> Mark Chambers</p>
+    </footer>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-tag reveal">04 — Contact</div>
-    <h2 class="contact-heading reveal">Let's <em>talk.</em></h2>
-    <p class="contact-sub reveal">Open to full-time roles, contract work, and interesting conversations.</p>
-    <div class="contact-links reveal">
-      <!-- <a href="mailto:your@email.com" class="contact-btn primary">✉ Email Me</a> -->
-      <a href="https://www.linkedin.com/in/m--chambers/" target="_blank" rel="noopener" class="contact-btn secondary">in LinkedIn</a>
-      <a href="https://github.com/HideousCoyote" target="_blank" rel="noopener" class="contact-btn secondary">⌥ GitHub</a>
-      <!-- As a functional button -->
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© <span id="year"></span> Mark Chambers</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
