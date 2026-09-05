@@ -3,57 +3,56 @@
    Handles: scroll reveal, navbar, mobile menu, year footer
    ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+`use strict`;
 
+document.addEventListener("DOMContentLoaded", () => {
   /* ── 1. FOOTER YEAR ──────────────────────────────────── */
-  const yearEl = document.getElementById('year');
+  const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-
   /* ── 2. NAVBAR SCROLL EFFECT ─────────────────────────── */
-  const navbar = document.getElementById('navbar');
+  const navbar = document.getElementById("navbar");
 
   const handleNavScroll = () => {
     if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
+      navbar.classList.add("scrolled");
     } else {
-      navbar.classList.remove('scrolled');
+      navbar.classList.remove("scrolled");
     }
   };
 
-  window.addEventListener('scroll', handleNavScroll, { passive: true });
+  window.addEventListener("scroll", handleNavScroll, { passive: true });
   handleNavScroll(); // run once on load
 
-
   /* ── 3. MOBILE HAMBURGER MENU ────────────────────────── */
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.querySelector('.nav-links');
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.querySelector(".nav-links");
   let scrollLockY = 0;
 
   const lockPageScroll = () => {
     scrollLockY = window.scrollY || window.pageYOffset || 0;
-    document.body.style.position = 'fixed';
+    document.body.style.position = "fixed";
     document.body.style.top = `-${scrollLockY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
   };
 
   const unlockPageScroll = () => {
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
     window.scrollTo(0, scrollLockY);
   };
 
   const setMobileMenuState = (isOpen) => {
-    navLinks.classList.toggle('open', isOpen);
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    document.documentElement.classList.toggle('menu-open', isOpen);
-    document.body.classList.toggle('menu-open', isOpen);
+    navLinks.classList.toggle("open", isOpen);
+    hamburger.classList.toggle("open", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    document.documentElement.classList.toggle("menu-open", isOpen);
+    document.body.classList.toggle("menu-open", isOpen);
     if (isOpen) {
       lockPageScroll();
     } else {
@@ -61,28 +60,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  hamburger.addEventListener('click', () => {
-    const isOpen = !navLinks.classList.contains('open');
+  hamburger.addEventListener("click", () => {
+    const isOpen = !navLinks.classList.contains("open");
     setMobileMenuState(isOpen);
   });
 
   // Close menu when a link is clicked
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+  navLinks.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
       setMobileMenuState(false);
     });
   });
 
   // Close when tapping outside menu links (overlay area).
-  navLinks.addEventListener('click', (event) => {
+  navLinks.addEventListener("click", (event) => {
     if (event.target === navLinks) {
       setMobileMenuState(false);
     }
   });
 
   // Close with Escape key for accessibility.
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navLinks.classList.contains("open")) {
       setMobileMenuState(false);
       hamburger.focus();
     }
@@ -93,108 +92,129 @@ document.addEventListener('DOMContentLoaded', () => {
     setMobileMenuState(false);
   };
 
-  const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+  const mobileBreakpoint = window.matchMedia("(max-width: 768px)");
   const handleViewportModeChange = (event) => {
     if (!event.matches) {
       closeMobileMenu();
     }
   };
 
-  if (typeof mobileBreakpoint.addEventListener === 'function') {
-    mobileBreakpoint.addEventListener('change', handleViewportModeChange);
-  } else if (typeof mobileBreakpoint.addListener === 'function') {
+  if (typeof mobileBreakpoint.addEventListener === "function") {
+    mobileBreakpoint.addEventListener("change", handleViewportModeChange);
+  } else if (typeof mobileBreakpoint.addListener === "function") {
     // Legacy Safari fallback.
     mobileBreakpoint.addListener(handleViewportModeChange);
   }
 
-  window.addEventListener('orientationchange', () => {
+  window.addEventListener("orientationchange", () => {
     if (!mobileBreakpoint.matches) {
       closeMobileMenu();
     }
   });
 
-
   /* ── 4. SCROLL REVEAL (Intersection Observer) ────────── */
-  const revealEls = document.querySelectorAll('.reveal');
+  const revealEls = document.querySelectorAll(".reveal");
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
           // Stagger siblings inside the same parent
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal:not(.visible)');
+          const siblings = entry.target.parentElement.querySelectorAll(
+            ".reveal:not(.visible)",
+          );
           siblings.forEach((el, idx) => {
-            setTimeout(() => el.classList.add('visible'), idx * 80);
+            setTimeout(() => el.classList.add("visible"), idx * 80);
           });
-          entry.target.classList.add('visible');
+          entry.target.classList.add("visible");
           revealObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
   );
 
-  revealEls.forEach(el => revealObserver.observe(el));
-
+  revealEls.forEach((el) => revealObserver.observe(el));
 
   /* ── 5. ACTIVE NAV LINK (highlights current section) ─── */
-  const sections  = document.querySelectorAll('section[id], header[id]');
-  const navAnchors = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll("section[id], header[id]");
+  const navAnchors = document.querySelectorAll(".nav-links a");
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          navAnchors.forEach(a => a.classList.remove('active'));
-          const match = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-          if (match) match.classList.add('active');
+          navAnchors.forEach((a) => a.classList.remove("active"));
+          const match = document.querySelector(
+            `.nav-links a[href="#${entry.target.id}"]`,
+          );
+          if (match) match.classList.add("active");
         }
       });
     },
-    { threshold: 0.4 }
+    { threshold: 0.4 },
   );
 
-  sections.forEach(s => sectionObserver.observe(s));
-
+  sections.forEach((s) => sectionObserver.observe(s));
 
   /* ── 6. TIMELINE STAGGER ANIMATION ──────────────────── */
-  const timelineItems = document.querySelectorAll('.timeline-item');
+  const timelineItems = document.querySelectorAll(".timeline-item");
 
   const timelineObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const delay = parseInt(entry.target.dataset.index || 0) * 150;
-          setTimeout(() => entry.target.classList.add('visible'), delay);
+          setTimeout(() => entry.target.classList.add("visible"), delay);
           timelineObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.1 },
   );
 
-  timelineItems.forEach(item => timelineObserver.observe(item));
-
+  timelineItems.forEach((item) => timelineObserver.observe(item));
 
   /* ── 7. SMOOTH SCROLL FALLBACK ───────────────────────── */
   // Covers browsers that don't support CSS scroll-behavior
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const target = document.querySelector(this.getAttribute("href"));
       if (!target) return;
       e.preventDefault();
       const offset = navbar ? navbar.offsetHeight + 20 : 80;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      window.scrollTo({ top, behavior: "smooth" });
     });
   });
-
 });
-
 
 // adds collapse to timeline on work history
-document.querySelectorAll('.timeline-header').forEach(header => {
-  header.addEventListener('click', () => {
-    header.closest('.timeline-content').classList.toggle('expanded');
+document.querySelectorAll(".timeline-header").forEach((header) => {
+  header.addEventListener("click", () => {
+    header.closest(".timeline-content").classList.toggle("expanded");
   });
 });
+
+// Target any element that has the data-active-class attribute
+// Look only for elements with the shared trigger class
+const itemsToWatch = document.querySelectorAll(".center-trigger");
+
+const observerOptions = {
+  root: null,
+  rootMargin: "-50% 0px -50% 0px", // Triggers exactly at the vertical center
+  threshold: 0,
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // Simply adds 'active' to whatever element is centered
+      entry.target.classList.add("active");
+    } else {
+      entry.target.classList.remove("active");
+    }
+  });
+}, observerOptions);
+
+itemsToWatch.forEach((item) => observer.observe(item));
